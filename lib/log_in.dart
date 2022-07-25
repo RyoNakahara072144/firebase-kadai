@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_kadai/name.dart';
 import 'package:firebase_kadai/sign_up.dart';
 import 'package:flutter/material.dart';
-
+import 'bulletin_board.dart';
 
 class AuthExercise extends StatefulWidget {
-  const AuthExercise({Key? key, required this.userId}) : super(key: key);
-  final String userId;
+  const AuthExercise({Key? key, required this .nickname,}) : super(key: key);
 
+  final String nickname;
 
   @override
   State<AuthExercise> createState() => _AuthExerciseState();
@@ -16,7 +15,7 @@ class AuthExercise extends StatefulWidget {
 class _AuthExerciseState extends State<AuthExercise> {
   bool _isSignedIn = false;
   String userId = '';
-
+String nickname ='';
   //問３
   void checkSignInState(){
     FirebaseAuth.instance
@@ -28,6 +27,7 @@ class _AuthExerciseState extends State<AuthExercise> {
         });
       } else {
         userId = user.uid;//ユーザーIdの取得
+        nickname = widget.nickname;
         setState(() {
           _isSignedIn = true;
         });
@@ -49,7 +49,7 @@ class _AuthExerciseState extends State<AuthExercise> {
     return Scaffold(
       appBar: AppBar(
       ),
-      body: _isSignedIn?name(userId: userId):const SignUp(),
+      body: _isSignedIn?Posts(userId: userId,nickname:nickname):const SignUp(),
     );
   }
 }

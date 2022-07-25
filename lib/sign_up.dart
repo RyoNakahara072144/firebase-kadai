@@ -1,11 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'name.dart';
-import 'bulletin_board.dart';
+
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key,}) : super(key: key);
+  const SignUp({Key? key,  }) : super(key: key);
+
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -16,14 +16,19 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordEditingController = TextEditingController();
   bool alreadySignedUp = false;
 
+
   //問１
   void handleSignUp()async{
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
           email: emailEditingController.text,
-          password: passwordEditingController.text
+          password: passwordEditingController.text,
       );
+      User user =userCredential.user!;
+      if(!mounted)return;
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)
+      {return name() ;}));
 
     }on FirebaseAuthException catch(e){
       if (e.code == 'email-already-in-use') {
@@ -82,6 +87,7 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -104,8 +110,7 @@ class _SignUpState extends State<SignUp> {
             alreadySignedUp?ElevatedButton(
               onPressed: (){
                 handleSignIn();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)
-                {return Posts(userId: '') ;}));
+
               },
               child: const Text('サインイン', style: TextStyle(color: Colors.white),),
               style: ButtonStyle(
@@ -115,6 +120,7 @@ class _SignUpState extends State<SignUp> {
             ):ElevatedButton(
               onPressed: (){
                 handleSignUp();
+
               },
               child: const Text('ユーザー登録', style: TextStyle(color: Colors.white),),
               style: ButtonStyle(
@@ -139,4 +145,3 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
-

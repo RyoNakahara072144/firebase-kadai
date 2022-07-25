@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_kadai/firebase_options.dart';
 import 'package:firebase_kadai/log_in.dart';
 import 'package:flutter/material.dart';
-import 'name.dart';
+
 
 
 void main() async{
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
 
       //この部分を問題に合わせて適時変更してください。
-      home: const AuthExercise(userId: 'userId'),
+      home: const AuthExercise(nickname:''),
     );
   }
 }
