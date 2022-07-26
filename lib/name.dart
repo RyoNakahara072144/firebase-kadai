@@ -22,6 +22,10 @@ class _nameState extends State<name> {
 
   @override
   Widget build(BuildContext context) {
+    //==============================================
+    //画面遷移を使わない場合は、nameの中でalreadySignedUpの値に応じて画面の切り替えをする方法が考えられます
+    //==============================================
+    //body: alreadySignedUp?Posts(userId: widget.userId):Container(~)
     return Scaffold(
       body: Container(
         alignment: Alignment.topCenter,
