@@ -71,9 +71,10 @@ class _SignUpState extends State<SignUp> {
       
        //##############################################################
       //ログイン時はPostsに直接画面遷移するようにすれば、checkSignInStateは必要ない。
+      //pushReplacementは戻れない画面遷移。
       //##############################################################
       //User user =userCredential.user!;
-      //Navigator.of(context).push(MaterialPageRoute(builder: (context)
+      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)
       //{return Posts(userId: user.uid) ;}));
       
     }on FirebaseAuthException catch(e){
