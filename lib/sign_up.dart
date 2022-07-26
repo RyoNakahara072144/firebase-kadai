@@ -27,6 +27,12 @@ class _SignUpState extends State<SignUp> {
       );
       User user =userCredential.user!;
       if(!mounted)return;
+      
+      //##############################################################
+      //login.dartでcheckSignInStateを起動させているので、アカウント作成直後に画面遷移をしようとすると
+      //_SignedInの切り替わりによる画面更新とタイミングが重なってしまう。
+      //これを避けるために、サインアップ・サインイン後の画面の切り替えは、どちらか一方の手段のみを使うと良い。
+      //##############################################################
       Navigator.of(context).push(MaterialPageRoute(builder: (context)
       {return name() ;}));
 
@@ -62,6 +68,14 @@ class _SignUpState extends State<SignUp> {
           email: emailEditingController.text,
           password: passwordEditingController.text
       );
+      
+       //##############################################################
+      //ログイン時はPostsに直接画面遷移するようにすれば、checkSignInStateは必要ない。
+      //##############################################################
+      //User user =userCredential.user!;
+      //Navigator.of(context).push(MaterialPageRoute(builder: (context)
+      //{return Posts(userId: user.uid) ;}));
+      
     }on FirebaseAuthException catch(e){
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
