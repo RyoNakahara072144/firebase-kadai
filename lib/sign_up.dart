@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'name.dart';
 
+//==============================================
+//画面遷移を使わない場合。nameから参照できるようにalreadySignedUpはグローバル変数とする。
+//==============================================
+//bool alreadySignedUp = false;
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key,  }) : super(key: key);
