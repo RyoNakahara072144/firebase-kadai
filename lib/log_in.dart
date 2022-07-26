@@ -16,8 +16,6 @@ class _AuthExerciseState extends State<AuthExercise> {
   bool _isSignedIn = false;
   String userId = '';
 String nickname ='';
-  //問３
-  void checkSignInState(){
     FirebaseAuth.instance
         .authStateChanges()
         .listen((User? user) {
@@ -49,6 +47,13 @@ String nickname ='';
     return Scaffold(
       appBar: AppBar(
       ),
+      
+  void checkSignInState(){
+      //==============================================
+      //checkSignInstateを実行するとサインアップ・サインインの時に自動で画面が切り替わるようになっています。
+      //SignUpで画面遷移を使わない場合は、nameの中で更に画面の切り替えをする方法が考えられます。
+      //==============================================
+    //body: _isSignedIn?name(userId: userId): const SignUp(),
       body: _isSignedIn?Posts(userId: userId,nickname:nickname):const SignUp(),
     );
   }
