@@ -41,6 +41,14 @@ class _nameState extends State<name> {
             SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {
+                //##############################################################
+                //現在のページに画面遷移するのは非推奨です。
+                //##############################################################
+                //if(nicknameEditingController.text !=''){
+                //  Navigator.of(context).push(
+                //    MaterialPageRoute(builder: (context) {
+                //        return AuthExercise(nickname: nicknameEditingController.text);
+                //}
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) {
                       if (nicknameEditingController.text != '') {
